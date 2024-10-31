@@ -1,0 +1,13 @@
+assemble:
+    - from: build/static
+      into: static
+c2b6-custom-element:
+    friendlyURLMapping: c2b6-custom-element
+    htmlElementName: c2b6-custom-element
+    instanceable: false
+    name: C2b6 Custom Element
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        - js/main.*.js
+    useESM: true

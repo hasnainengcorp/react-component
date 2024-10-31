@@ -1,0 +1,15 @@
+assemble:
+    - from: build/static
+      into: static
+mh-react-main:
+    cssURLs:
+        - css/main.*.css
+    friendlyURLMapping: mh-react-main
+    htmlElementName: mh-react-main
+    instanceable: false
+    name: mh react main
+    portletCategoryName: category.client-extensions
+    type: customElement
+    urls:
+        - js/main.*.js
+    useESM: true

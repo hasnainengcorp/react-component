@@ -1,0 +1,52 @@
+name: Build and Deploy React Client Extension
+
+on:
+  push:
+    branches:
+      - dev-liferay-saas
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16' # Set the Node version appropriate for your project
+
+      # Install dependencies
+      - name: Install Node dependencies
+        run: npm install
+
+      # Run the React build (if needed)
+      - name: Build React application
+        run: npm run build
+
+      # Set up Java environment for Gradle
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11' # Set the Java version appropriate for your project
+
+      # Build and package the Liferay client extension with Gradle set1
+      - name: Build Liferay Client Extension
+        run: ./gradlew clean build
+
+      # Authenticate with Liferay Cloud Platform (LCP)
+      - name: LCP Login
+        run: lcp login --email ${{ secrets.LCP_EMAIL }} --password ${{ secrets.LCP_PASSWORD }}
+        env:
+          LCP_EMAIL: ${{ secrets.LCP_EMAIL }}
+          LCP_PASSWORD: ${{ secrets.LCP_PASSWORD }}
+
+      #Artifact to zip 
+  
+      # Deploy to Liferay Cloud Platform
+      - name: Deploy to Liferay Cloud Platform
+        run: lcp deploy --project <your-project-id>

@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "workspaces": {
+        "packages": [
+            "client-extensions\\c2b6-custom-element",
+            "client-extensions\\liferay-sample-custom-element-react-clayui",
+            "client-extensions\\liferay-sample-custom-element-react-scripts",
+            "client-extensions\\mh-react-main",
+            "client-extensions\\node-js",
+            "client-extensions\\React-Axios-using-CRUD-master",
+            "client-extensions\\sample-node-project-master"
+        ]
+    }
+}
